@@ -21,13 +21,13 @@ html {
     --accent-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     --text-dark: #212529;
     --text-light: #f8f9fa;
-    --background-light: #ffffff;
+    --background-light: #fff;
     --background-medium: #f1f3f5;
     --background-dark: #343a40;
     --border-color: #dee2e6;
 
     /* Typography */
-    --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-primary: 'Poppins', -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, helvetica, arial, sans-serif;
     --font-secondary: 'Roboto Slab', serif; /* Example for headings */
     
     /* Spacing */
@@ -56,15 +56,23 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+
     /* Basic custom cursor - Replace 'cursor.png' with an actual image path */
-    /* cursor: url('../images/cursor.png') 16 16, auto; */ /* 16 16 is the hotspot */
+
+    /* cursor: url('../images/cursor.png') 16 16, auto; */
+
+ /* 16 16 is the hotspot */
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Apply custom cursor to interactive elements */
+
 /* a:hover, button:hover { */
+
      /* cursor: url('../images/cursor-hover.png') 16 16, pointer; */ 
+
      /* Fallback / Default hover is removed to prioritize custom cursor */
+
 /* } */
 
 
@@ -132,7 +140,9 @@ strong {
 }
 
 blockquote {
-    /* border-left: 4px solid var(--primary-color-light); */ /* Replaced by gradient border on testimonials or removed */
+    /* border-left: 4px solid var(--primary-color-light); */
+
+ /* Replaced by gradient border on testimonials or removed */
     padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-lg) var(--spacing-lg); /* Increased right padding */
     margin-left: 0; /* Remove default indent */
     margin-right: 0;
@@ -141,7 +151,7 @@ blockquote {
     position: relative; /* Needed for pseudo-elements */
     background-color: var(--background-light); /* Ensure light background */
     border-radius: 8px; /* Add slight rounding */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+    box-shadow: 0 2px 5px rgb(0 0 0 / 5%); /* Subtle shadow */
     overflow: hidden; /* Contain pseudo-elements */
 }
 
@@ -199,6 +209,7 @@ section ul:not(#methodologies-toolkit ul) > li,
 article:not(#methodologies-toolkit) ul > li { /* Corrected selector */
     position: relative;
     padding-left: 1.8em; /* Space for icon */
+
     /* margin-bottom is already handled by base li style */
 }
 
@@ -212,8 +223,11 @@ article:not(#methodologies-toolkit) ul > li::before { /* Corrected selector */
     top: 0.1em; /* Adjust vertical alignment slightly */
     color: var(--primary-color-light);
     font-size: 0.9em; /* Icon size relative to li text */
+
     /* Optional: width/text-align for consistent spacing if needed */
+
     /* width: 1.2em; */
+
     /* text-align: center; */
 }
 
@@ -231,12 +245,14 @@ article:not(#methodologies-toolkit) ul > li:has(i.fab)::before {
 section ol, article ol {
     padding-left: 1.5rem; /* Keep default padding */
 }
+
 section ol > li, article ol > li {
     /* Default numbering */
     list-style: decimal; /* Ensure numbering */
     position: relative; /* Reset relative positioning if inherited */
     padding-left: 0; /* Reset padding */
 }
+
 section ol > li::before, article ol > li::before {
     content: none; /* Ensure no icon is added */
 }
@@ -253,9 +269,13 @@ nav ul > li::before,
 main {
     flex-grow: 1;
     width: 100%; /* Allow sections to be full width if needed */
+
     /* Remove background/shadow/radius from main container */
+
     /* background-color: var(--background-light); */ 
+
     /* box-shadow: 0 2px 10px rgba(0,0,0,0.05); */
+
     /* border-radius: 12px; */
 }
 
@@ -268,23 +288,28 @@ section {
     
     /* Default section styling (card-like appearance) */
     background-color: var(--background-light);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     border-radius: 12px;
 }
 
 /* Remove the alternating background rule */
+
 /* section:nth-child(even) { */
+
 /*    background-color: var(--background-light); */
+
 /* } */
 
 /* 4. Header & Navigation */
 header {
     background-color: var(--background-light);
+
     /* Subtle gradient background for header */
+
     /* background: linear-gradient(to bottom, #ffffff, #f8f9fa); */ 
     padding: var(--spacing-sm) 5%;
     border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 3px 6px rgb(0 0 0 / 4%);
     position: sticky; /* Sticky header */
     top: 0;
     z-index: 100;
@@ -393,12 +418,15 @@ nav ul li a[aria-current="page"] { /* Style for active link using ARIA */
 .mobile-nav-toggle.active .icon-bar {
     background-color: var(--text-light); /* Change to white for visibility on dark nav */
 }
+
 .mobile-nav-toggle.active .icon-bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
 }
+
 .mobile-nav-toggle.active .icon-bar:nth-child(2) {
     opacity: 0;
 }
+
 .mobile-nav-toggle.active .icon-bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
 }
@@ -433,9 +461,13 @@ textarea:focus,
 select:focus {
     outline: 3px solid var(--primary-color-light);
     outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba(0, 95, 158, 0.3); /* Optional glow */
-    /* border-radius: 2px; */ /* Removed focus rounding */
+    box-shadow: 0 0 0 4px rgb(0 95 158 / 30%); /* Optional glow */
+
+    /* border-radius: 2px; */
+
+ /* Removed focus rounding */
 }
+
 /* Ensure sticky header doesn't overlap focus */
 header:has(+ main *:focus) {
     /* This might need adjustment depending on exact structure/styles */
@@ -452,7 +484,7 @@ header:has(+ main *:focus) {
     align-items: center;
     justify-content: space-between;
     padding: var(--spacing-xl) 8%; /* More padding */
-    background: linear-gradient(135deg, rgba(0, 57, 115, 0.8), rgba(0, 95, 158, 0.7)); /* Removed image, kept gradient */
+    background: linear-gradient(135deg, rgb(0 57 115 / 80%), rgb(0 95 158 / 70%)); /* Removed image, kept gradient */
     color: var(--text-light);
     max-width: none; /* Override default section max-width */
     box-shadow: none;
@@ -471,7 +503,7 @@ header:has(+ main *:focus) {
     font-size: 1.1rem;
     max-width: 60ch;
     margin-bottom: var(--spacing-lg);
-    color: rgba(255, 255, 255, 0.9);
+    color: rgb(255 255 255 / 90%);
 }
 
 .hero-content {
@@ -491,9 +523,18 @@ header:has(+ main *:focus) {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* text-align: center; */ /* No longer needed */
-    /* color: var(--text-dark); */ /* No longer needed */
-    /* font-style: italic; */ /* No longer needed */
+
+    /* text-align: center; */
+
+ /* No longer needed */
+
+    /* color: var(--text-dark); */
+
+ /* No longer needed */
+
+    /* font-style: italic; */
+
+ /* No longer needed */
     margin-top: var(--spacing-lg);
 }
 
@@ -531,7 +572,7 @@ header:has(+ main *:focus) {
     width: 100%;
     height: auto;
     border-radius: 12px; /* Match section border-radius */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Add a subtle shadow */
+    box-shadow: 0 4px 10px rgb(0 0 0 / 10%); /* Add a subtle shadow */
     background-color: var(--background-medium); /* BG for placeholder */
 }
 
@@ -549,37 +590,57 @@ header:has(+ main *:focus) {
     transition: transform var(--transition-fast), box-shadow var(--transition-fast);
     text-align: center;
     text-decoration: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgb(0 0 0 / 10%);
 }
 
 .btn:hover,
 .btn:focus {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 15%);
     color: var(--text-light);
     text-decoration: none;
 }
 
 /* Specific button on contact page */
+
 /* #contact-button { */
+
     /* Inherits .btn styles if class is added, or define here */
+
 /*    display: inline-block; */
+
 /*    background: var(--accent-gradient); */
+
 /*    color: var(--text-light); */
+
 /*    padding: var(--spacing-md) var(--spacing-xl); */
+
 /*    border: none; */
+
 /*    border-radius: 50px; */
+
 /*    font-size: 1.1rem; */
+
 /*    font-weight: 600; */
+
 /*    cursor: pointer; */
+
 /*    transition: transform var(--transition-fast), box-shadow var(--transition-fast); */
+
 /*    text-align: center; */
+
 /*    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); */
+
 /* } */
+
 /* #contact-button:hover, */
+
 /* #contact-button:focus { */
+
 /*    transform: translateY(-3px) scale(1.03); */
+
 /*    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); */
+
 /* } */
 
 
@@ -600,9 +661,12 @@ header:has(+ main *:focus) {
 }
 
 /* Apply animation - can be triggered with JS Intersection Observer for better control */
+
 /* Example: Apply to sections as they scroll into view (basic version) */
 section {
-    /* animation: slideInUp 0.7s ease-out forwards; */ /* Removed global animation */
+    /* animation: slideInUp 0.7s ease-out forwards; */
+
+ /* Removed global animation */
     opacity: 1; /* Ensure sections are visible by default */
     transition: opacity var(--transition-medium), transform var(--transition-medium);
 }
@@ -610,7 +674,7 @@ section {
 /* Add hover animations to specific elements, e.g., service cards */
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
 
 /* 9. Specific Section Styles (Examples) */
@@ -631,13 +695,13 @@ section {
     background-color: var(--background-light);
     padding: var(--spacing-lg);
     border-radius: 12px; /* Increased border-radius */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .facilitator:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
 }
 
 .facilitator h3 {
@@ -665,7 +729,7 @@ section {
     border-left: 5px solid;
     border-image-slice: 1;
     border-image-source: var(--accent-gradient);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -682,13 +746,13 @@ section {
     background-color: var(--background-light);
     border-radius: 12px; /* Increased border-radius */
     overflow: hidden; /* Ensure img corners match */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .workshop-gallery figure:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
 }
 
 .workshop-gallery img {
@@ -706,6 +770,7 @@ section {
     color: var(--text-dark);
     background-color: var(--background-light);
 }
+
 /* --- End Workshop Gallery Styles --- */
 
 /* --- Contact Form Styles --- */
@@ -741,6 +806,7 @@ section {
 .form-group input[type="email"]:focus,
 .form-group textarea:focus {
     border-color: var(--primary-color-light);
+
     /* Use the global focus style defined earlier */
 }
 
@@ -752,6 +818,7 @@ section {
     /* Already styled by .btn class */
     margin-top: var(--spacing-sm);
 }
+
 /* --- End Contact Form Styles --- */
 
 /* Services */
@@ -765,14 +832,14 @@ section {
     background-color: var(--background-light);
     padding: var(--spacing-lg);
     border-radius: 12px; /* Increased border-radius */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
     margin-bottom: 0; /* Reset default paragraph margin */
 }
 
 #core-services article:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
 }
 
 #core-services h4 {
@@ -791,7 +858,7 @@ section {
     padding: var(--spacing-lg);
     border-radius: 12px; /* Increased border-radius */
     margin-bottom: var(--spacing-lg);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
 }
 
 #methodologies-toolkit h4 {
@@ -803,8 +870,12 @@ section {
 .methodology-icon {
     display: inline-block;
     margin-right: var(--spacing-md); /* Increased from var(--spacing-sm) for more space */
-    /* font-size: 0.9em; */ /* Removed - use FA sizing */
+
+    /* font-size: 0.9em; */
+
+ /* Removed - use FA sizing */
     color: var(--primary-color-dark); /* Or icon color */
+
     /* Add styles for actual icons (e.g., font-family if using icon font) */
     text-align: center;
     width: 1.2em; /* Ensure icons align nicely */
@@ -834,7 +905,7 @@ a i.fab + span {
 /* 10. Footer */
 footer {
     background: var(--background-dark); 
-    color: rgba(255, 255, 255, 0.7); /* Slightly less bright text */
+    color: rgb(255 255 255 / 70%); /* Slightly less bright text */
     text-align: center; /* Fallback alignment */
     padding: var(--spacing-lg) 5%; /* Adjust padding */
     margin-top: auto;
@@ -849,6 +920,7 @@ footer {
 /* Footer Navigation */
 .footer-nav {
     margin-bottom: 0; /* Reset margin */
+
     /* Takes available space on left, adjust as needed */
 }
 
@@ -867,7 +939,7 @@ footer {
 }
 
 .footer-nav ul li a {
-    color: rgba(255, 255, 255, 0.9); /* Brighter links */
+    color: rgb(255 255 255 / 90%); /* Brighter links */
     font-weight: 500;
     text-decoration: none;
     transition: color var(--transition-fast);
@@ -875,7 +947,7 @@ footer {
 
 .footer-nav ul li a:hover,
 .footer-nav ul li a:focus {
-    color: #ffffff;
+    color: #fff;
     text-decoration: underline;
 }
 
@@ -887,35 +959,41 @@ footer p {
 }
 
 footer a {
-    color: rgba(255, 255, 255, 0.9); /* Brighter links */
+    color: rgb(255 255 255 / 90%); /* Brighter links */
     font-weight: 500;
 }
 
 footer a:hover {
-    color: #ffffff;
+    color: #fff;
 }
 
 /* 11. Responsiveness */
-@media (max-width: 992px) {
+@media (width <= 992px) {
     .header-content {
         flex-direction: column;
     }
+
     nav ul {
         margin-top: var(--spacing-sm);
     }
+
     #hero {
         flex-direction: column;
         text-align: center;
         min-height: auto; /* Adjust height on smaller screens */
         padding: var(--spacing-xxl) 5%;
     }
+
     .hero-content {
         max-width: 100%;
         padding-right: 0;
         margin-bottom: var(--spacing-xl);
+
         /* Use slideInUp animation on smaller screens for hero */
+
         /* animation: slideInUp 0.8s ease-out forwards; */ 
     }
+
     .hero-image-placeholder {
         max-width: 60%;
         margin: 0 auto;
@@ -924,14 +1002,16 @@ footer a:hover {
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     html {
         font-size: 95%;
     }
+
     /* --- Mobile Nav Display --- */
     .mobile-nav-toggle {
         display: block; /* Show toggle button */
     }
+
     header nav {
         /* Hide nav by default, position it */
         position: fixed; 
@@ -942,51 +1022,60 @@ footer a:hover {
         height: 100vh;
         background-color: var(--background-dark);
         padding: var(--spacing-xxl) var(--spacing-lg);
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        box-shadow: -5px 0 15px rgb(0 0 0 / 10%);
         transition: right var(--transition-medium);
         z-index: 105; /* Above header content but below toggle maybe */
         border-top-left-radius: 15px; /* Add rounding */
         border-bottom-left-radius: 15px; /* Add rounding */
     }
+
     header nav.nav-active {
         right: 0; /* Slide in */
     }
+
     nav ul {
         flex-direction: column;
         align-items: flex-start;
         margin-top: var(--spacing-lg);
     }
+
     nav ul li {
         margin: var(--spacing-md) 0; /* Full width */
         width: 100%;
     }
+
     nav ul li a {
         color: var(--text-light); /* Light links on dark background */
         padding: var(--spacing-sm) var(--spacing-md);
         display: block; /* Make links fill li */
         width: 100%;
     }
+
     nav ul li a::after {
         /* Adjust or remove underline for mobile nav */
        display: none; 
     }
+
      nav ul li a:hover,
      nav ul li a:focus,
      nav ul li a.active, 
      nav ul li a[aria-current="page"] { 
          color: var(--text-light); 
-         background-color: rgba(255, 255, 255, 0.1);
+         background-color: rgb(255 255 255 / 10%);
          text-decoration: none;
          border-radius: 4px;
      }
+
     /* --- End Mobile Nav Display --- */
 
     section {
         padding: var(--spacing-lg) 5%;
     }
+
     .parallax-section {
          padding: var(--spacing-xl) 5%;
     }
+
      #team, #core-services, #workshop-moments .gallery-placeholder {
         grid-template-columns: 1fr; /* Stack elements */
     }
@@ -1011,7 +1100,7 @@ footer a:hover {
 }
 
 /* --- Desktop Footer: Force single line --- */
-@media (min-width: 993px) {
+@media (width >= 993px) {
     footer {
         display: flex;
         flex-direction: row;
@@ -1020,11 +1109,13 @@ footer a:hover {
         align-items: center !important;
         gap: var(--spacing-lg) !important;
     }
+
     .footer-nav {
         flex: 1 1 70%;
         max-width: 70%;
         min-width: 0;
     }
+
     .footer-nav ul {
         display: flex;
         flex-wrap: wrap;
@@ -1032,27 +1123,33 @@ footer a:hover {
         overflow-x: visible;
         white-space: normal;
     }
+
     .footer-nav ul li {
         white-space: nowrap;
     }
+
     footer p {
         flex: 0 1 30%;
         margin-left: auto;
         text-align: right !important;
         width: auto !important;
         white-space: nowrap;
-        color: rgba(255,255,255,0.7);
+        color: rgb(255 255 255 / 70%);
     }
+
     nav ul {
         gap: 1.2rem;
     }
+
     nav ul li {
         margin: 0 0.6rem;
     }
+
     nav ul li a {
         font-size: 0.88rem;
         padding: var(--spacing-xs) 0;
     }
+
     header,
     nav,
     nav ul {
@@ -1060,10 +1157,12 @@ footer a:hover {
         max-width: 100%;
         box-sizing: border-box;
     }
+
     header {
         padding-left: 0;
         padding-right: 0;
     }
+
     .header-content {
         display: flex;
         justify-content: center;
@@ -1092,6 +1191,7 @@ footer a:hover {
      opacity: 0;
      transition: opacity 0.8s ease-out;
 }
+
 .animate-fade-in.is-visible {
      opacity: 1;
 }
@@ -1101,10 +1201,12 @@ footer a:hover {
     transform: translateX(-50px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
 .animate-slide-left.is-visible {
      opacity: 1;
      transform: translateX(0);
 }
+
 /* --- End Animation Styling --- */
 
 /* --- Specific Page/Section Styles --- */
@@ -1134,7 +1236,7 @@ footer a:hover {
     height: auto;
     margin: var(--spacing-lg) auto; /* Add margin top/bottom and center horizontally */
     border-radius: 12px; /* Match section border-radius */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Subtle shadow */
+    box-shadow: 0 4px 10px rgb(0 0 0 / 8%); /* Subtle shadow */
 }
 
 /* Style for OST Principles Images Container */
@@ -1150,7 +1252,7 @@ footer a:hover {
     max-width: 100%;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
 /* Make first principles image smaller */
@@ -1165,7 +1267,7 @@ footer a:hover {
     height: auto;
     margin: 2rem auto;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
 /* Style for OST Circle Image Container */
@@ -1181,7 +1283,7 @@ footer a:hover {
     max-width: 100%;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
 /* Style for OST Circle Image (within list) */
@@ -1189,7 +1291,7 @@ footer a:hover {
     max-width: 100%;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
     margin: 1rem auto;
     display: block;
 }
@@ -1199,6 +1301,7 @@ footer a:hover {
     list-style-type: none;
     padding-left: 0;
 }
+
 #ost-facilitation ul > li:has(img.ost-circle-image)::before {
     content: none;
 }
@@ -1216,7 +1319,7 @@ footer a:hover {
     max-width: 100%;
     height: auto;
     border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
 }
 
 /* ============================================
@@ -1245,7 +1348,7 @@ footer a:hover {
 
 .btn-ghost:hover,
 .btn-ghost:focus {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgb(255 255 255 / 15%);
     color: var(--text-light);
     box-shadow: none;
 }
@@ -1263,7 +1366,7 @@ footer a:hover {
 }
 
 /* Desktop nav: flex layout with CTA */
-@media (min-width: 769px) {
+@media (width >= 769px) {
     #primary-navigation {
         display: flex;
         align-items: center;
@@ -1271,7 +1374,7 @@ footer a:hover {
 }
 
 /* Mobile nav CTA */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .nav-cta {
         display: block;
         margin: var(--spacing-lg) var(--spacing-md) 0;
@@ -1325,13 +1428,13 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-xl);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .audience-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
 }
 
 .audience-card h3 {
@@ -1470,7 +1573,7 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-xl);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     margin-bottom: var(--spacing-lg);
 }
 
@@ -1494,7 +1597,7 @@ footer a:hover {
     align-items: start;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     #contact-grid {
         grid-template-columns: 1fr;
     }
@@ -1511,7 +1614,7 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-lg);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
 }
 
 .contact-direct h2,
@@ -1576,7 +1679,7 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-xl);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     border-top: 4px solid;
     border-image-slice: 1;
     border-image-source: var(--accent-gradient);
@@ -1605,13 +1708,13 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-xl);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
 }
 
 .service-card h3 {
@@ -1630,13 +1733,13 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-xl);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .skill-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
 }
 
 .skill-card h3 {
@@ -1655,7 +1758,7 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-xl);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
 }
 
 .format-card h3 {
@@ -1674,13 +1777,13 @@ footer a:hover {
     background-color: var(--background-light);
     padding: var(--spacing-xl);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     transition: transform var(--transition-medium), box-shadow var(--transition-medium);
 }
 
 .method-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 15px rgb(0 0 0 / 10%);
 }
 
 .method-card h2 {
@@ -1710,7 +1813,7 @@ details {
     background-color: var(--background-light);
     border-radius: 8px;
     margin-bottom: var(--spacing-sm);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 3%);
     overflow: hidden;
 }
 
@@ -1799,7 +1902,7 @@ details > p {
     background-color: var(--background-light);
     padding: var(--spacing-lg);
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
     margin-bottom: var(--spacing-md);
     border-left: 4px solid;
     border-image-slice: 1;
