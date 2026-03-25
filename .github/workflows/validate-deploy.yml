@@ -40,12 +40,12 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -p 7685 -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
+          ssh-keyscan -p ${{ secrets.DEPLOY_PORT }} -H "${{ secrets.DEPLOY_HOST }}" >> ~/.ssh/known_hosts
           echo "HostKeyAlgorithms +ssh-rsa" >> ~/.ssh/config
           echo "PubkeyAcceptedKeyTypes +ssh-rsa" >> ~/.ssh/config
 
       - name: Deploy via rsync
         run: |
-          rsync -avz --delete -e "ssh -p 7685 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa" \
+          rsync -avz --delete -e "ssh -p ${{ secrets.DEPLOY_PORT }} -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa" \
             --exclude='*:Zone.Identifier' \
             public_html/ "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}"
