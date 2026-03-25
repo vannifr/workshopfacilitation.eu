@@ -47,12 +47,5 @@ jobs:
       - name: Deploy via rsync
         run: |
           rsync -avz --delete -e "ssh -p 7685 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa" \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='node_modules' \
-            --exclude='package*.json' \
-            --exclude='.htmlvalidate.json' \
-            --exclude='.stylelintrc.json' \
-            --exclude='*.md' \
             --exclude='*:Zone.Identifier' \
-            ./ "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}"
+            public_html/ "${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}"
