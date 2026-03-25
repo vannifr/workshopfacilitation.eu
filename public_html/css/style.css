@@ -889,7 +889,7 @@ select:focus-visible {
 /* 11. Process Steps (Compact, Homepage) */
 .process-steps-compact {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: var(--sp-lg);
     margin-top: var(--sp-lg);
 }
@@ -1983,6 +1983,10 @@ footer a:hover {
 
     .footer-nav ul {
         justify-content: center;
+    }
+
+    .process-steps-compact {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
 
     .process-step {

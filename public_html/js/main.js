@@ -80,6 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
         phoneEl.appendChild(link);
     }
 
+    // --- Protected Name Rendering (anti-scraping) ---
+    document.querySelectorAll('.protected-name').forEach(el => {
+        el.textContent = [el.dataset.f, el.dataset.m, el.dataset.l, el.dataset.s].join('');
+    });
+
     // --- Method Finder Wizard ---
     const wizard = document.getElementById('finder-wizard');
     if (wizard) {
