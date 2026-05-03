@@ -21,7 +21,20 @@ const NEW_PAGES = [
   'open-space-technology.html',
   'lego-serious-play.html',
   'consent-decision-making.html',
+  'visual-harvesting.html',
+  'retrospectives.html',
+  'flow-simulation.html',
+  'lean-startup-simulation.html',
+  'case-eu-agency-liberating-structures.html',
+  'privacy.html',
+  'legal.html',
 ];
+
+// Pages with full content treatment (sticky CTA, trust signals etc.)
+// Excludes utility pages like privacy and legal
+const CONTENT_PAGES = NEW_PAGES.filter(
+  (p) => !['privacy.html', 'legal.html'].includes(p)
+);
 
 const OLD_PAGES = [
   'why-us.html',
@@ -35,6 +48,10 @@ const METHODOLOGY_PAGES = [
   'open-space-technology.html',
   'lego-serious-play.html',
   'consent-decision-making.html',
+  'visual-harvesting.html',
+  'retrospectives.html',
+  'flow-simulation.html',
+  'lean-startup-simulation.html',
 ];
 
 const EXPECTED_NAV_ITEMS = [
@@ -75,6 +92,11 @@ function getLinkedStylesheets($) {
     if (href) sheets.push(href);
   });
   return sheets;
+}
+
+/** Return the page-level footer (direct child of body), not inline footers inside blockquotes. */
+function getPageFooter($) {
+  return $('body > footer').first();
 }
 
 // =========================================================================
@@ -151,7 +173,41 @@ describe('SEO', () => {
     );
   });
 
-  // --- Meta description ---
+  // --- Title length ≤60 chars ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — <title> is ≤60 characters`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const $ = loadPage(page);
+      const title = $('title').first().text().trim();
+      assert.ok(
+        title.length > 0,
+        `${page}: <title> is empty`
+      );
+      assert.ok(
+        title.length <= 60,
+        `${page}: <title> is ${title.length} chars (max 60): "${title}"`
+      );
+    });
+  }
+
+  // --- Title contains brand name ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — <title> contains brand name "Inclusive Dynamics"`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const $ = loadPage(page);
+      const title = $('title').first().text().trim();
+      assert.ok(
+        title.includes('Inclusive Dynamics'),
+        `${page}: <title> does not contain "Inclusive Dynamics": "${title}"`
+      );
+    });
+  }
+
+  // --- Meta description exists ---
   for (const page of NEW_PAGES) {
     it(`${page} has a meta description`, () => {
       if (!pageExists(page)) {
@@ -166,7 +222,27 @@ describe('SEO', () => {
     });
   }
 
-  // --- Canonical URL ---
+  // --- Meta description length (50–160 chars) ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — meta description is 50–160 characters`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const $ = loadPage(page);
+      const desc = ($('meta[name="description"]').attr('content') || '').trim();
+      if (!desc) return; // covered by the exists test
+      assert.ok(
+        desc.length >= 50,
+        `${page}: meta description too short (${desc.length} chars, min 50)`
+      );
+      assert.ok(
+        desc.length <= 160,
+        `${page}: meta description too long (${desc.length} chars, max 160): "${desc}"`
+      );
+    });
+  }
+
+  // --- Canonical URL exists ---
   for (const page of NEW_PAGES) {
     it(`${page} has a canonical URL`, () => {
       if (!pageExists(page)) {
@@ -177,6 +253,22 @@ describe('SEO', () => {
       assert.ok(
         canonical && canonical.trim().length > 0,
         `${page}: missing <link rel="canonical">`
+      );
+    });
+  }
+
+  // --- Canonical is absolute HTTPS URL ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — canonical URL is absolute HTTPS`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const $ = loadPage(page);
+      const canonical = ($('link[rel="canonical"]').attr('href') || '').trim();
+      if (!canonical) return; // covered by exists test
+      assert.ok(
+        canonical.startsWith('https://'),
+        `${page}: canonical URL must start with https://, got "${canonical}"`
       );
     });
   }
@@ -373,7 +465,6 @@ describe('Accessibility', () => {
         assert.fail(`Page "${page}" does not exist yet`);
       }
       const $ = loadPage(page);
-      // Look for a button that toggles the nav (common patterns)
       const toggle = $('button.nav-toggle, button.mobile-nav-toggle, button.hamburger, [data-nav-toggle], button[aria-controls="primary-navigation"]');
       assert.ok(
         toggle.length > 0,
@@ -469,7 +560,7 @@ describe('Navigation', () => {
         continue;
       }
       const $ = loadPage(page);
-      const footer = $('footer').first();
+      const footer = getPageFooter($); // uses body > footer to avoid blockquote footers
       if (footer.length === 0) {
         missing.push(page);
         continue;
@@ -607,6 +698,83 @@ describe('Content', () => {
       );
     });
   }
+
+  // --- Sticky CTA on all content pages ---
+  for (const page of CONTENT_PAGES) {
+    it(`${page} — has sticky CTA (#sticky-cta)`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const $ = loadPage(page);
+      assert.ok(
+        $('#sticky-cta').length > 0,
+        `${page}: no #sticky-cta element found`
+      );
+    });
+  }
+
+  // --- No content placeholders in page text ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — no content placeholders in text`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const $ = loadPage(page);
+      // Check visible text for placeholder patterns
+      const bodyText = $('body').text();
+      const placeholderPatterns = [
+        /\[QUOTE\s+PLACEHOLDER/i,
+        /\[TODO/i,
+        /\[PLACEHOLDER/i,
+        /\[COMING\s+SOON/i,
+        /\[FIXME/i,
+        /\[VAT\s+PLACEHOLDER/i,
+        /\[INSERT/i,
+        /\[TBD/i,
+        /\[TO\s+BE\s+(ADDED|FILLED|REPLACED)/i,
+      ];
+      const found = [];
+      for (const pattern of placeholderPatterns) {
+        const match = bodyText.match(pattern);
+        if (match) found.push(match[0]);
+      }
+      assert.equal(
+        found.length,
+        0,
+        `${page}: content placeholders found in page text: ${found.join(', ')}`
+      );
+    });
+  }
+
+  // --- No placeholder HTML comments ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — no placeholder HTML comments`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const html = fs.readFileSync(path.join(SITE_DIR, page), 'utf-8');
+      const placeholderPatterns = [
+        /<!--.*will go here later.*-->/i,
+        /<!--.*todo.*-->/i,
+        /<!--.*placeholder.*-->/i,
+        /<!--.*coming soon.*-->/i,
+        /<!--.*fixme.*-->/i,
+        /<!--.*temp.*-->/i,
+      ];
+      const found = [];
+      for (const pattern of placeholderPatterns) {
+        const match = html.match(pattern);
+        if (match) {
+          found.push(match[0]);
+        }
+      }
+      assert.equal(
+        found.length,
+        0,
+        `${page}: placeholder comments found: ${found.join(', ')}`
+      );
+    });
+  }
 });
 
 // =========================================================================
@@ -640,32 +808,51 @@ describe('Performance', () => {
     });
   }
 
-  // --- No placeholder comments ---
+  // --- Images have width and height (prevents CLS) ---
   for (const page of NEW_PAGES) {
-    it(`${page} — no placeholder HTML comments`, () => {
+    it(`${page} — all images have width and height attributes`, () => {
       if (!pageExists(page)) {
         assert.fail(`Page "${page}" does not exist yet`);
       }
-      const html = fs.readFileSync(path.join(SITE_DIR, page), 'utf-8');
-      const placeholderPatterns = [
-        /<!--.*will go here later.*-->/i,
-        /<!--.*todo.*-->/i,
-        /<!--.*placeholder.*-->/i,
-        /<!--.*coming soon.*-->/i,
-        /<!--.*fixme.*-->/i,
-        /<!--.*temp.*-->/i,
-      ];
-      const found = [];
-      for (const pattern of placeholderPatterns) {
-        const match = html.match(pattern);
-        if (match) {
-          found.push(match[0]);
+      const $ = loadPage(page);
+      const missing = [];
+      $('img[src]').each((_, el) => {
+        const src = $(el).attr('src') || '';
+        if (src.startsWith('data:')) return;
+        const hasWidth = $(el).attr('width') !== undefined;
+        const hasHeight = $(el).attr('height') !== undefined;
+        if (!hasWidth || !hasHeight) {
+          missing.push(src);
         }
-      }
+      });
       assert.equal(
-        found.length,
+        missing.length,
         0,
-        `${page}: placeholder comments found: ${found.join(', ')}`
+        `${page}: images missing width/height attributes (causes layout shift): ${missing.join(', ')}`
+      );
+    });
+  }
+
+  // --- Image files exist on disk ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — all referenced image files exist`, () => {
+      if (!pageExists(page)) {
+        assert.fail(`Page "${page}" does not exist yet`);
+      }
+      const $ = loadPage(page);
+      const missing = [];
+      $('img[src]').each((_, el) => {
+        const src = $(el).attr('src') || '';
+        if (!src || src.startsWith('data:') || src.startsWith('http://') || src.startsWith('https://')) return;
+        const imgPath = path.join(SITE_DIR, src);
+        if (!fs.existsSync(imgPath)) {
+          missing.push(src);
+        }
+      });
+      assert.equal(
+        missing.length,
+        0,
+        `${page}: image files not found on disk: ${missing.join(', ')}`
       );
     });
   }
@@ -888,8 +1075,6 @@ describe('Technical', () => {
     it(`${page} — no plain-text phone numbers in body`, () => {
       if (!pageExists(page)) return;
       const $ = loadPage(page);
-      const bodyText = $('body').text();
-      // Match Belgian phone patterns but exclude script content
       const bodyHtml = $('main').html() || '';
       // Remove script tags content
       const htmlNoScript = bodyHtml.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
@@ -904,7 +1089,8 @@ describe('Technical', () => {
   }
 
   // --- No plain-text email addresses in HTML body ---
-  for (const page of NEW_PAGES) {
+  // Utility pages (privacy, legal) are exempt as they legally need contact info
+  for (const page of CONTENT_PAGES) {
     it(`${page} — no plain-text email addresses in body`, () => {
       if (!pageExists(page)) return;
       const $ = loadPage(page);
