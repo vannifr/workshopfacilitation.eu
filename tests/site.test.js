@@ -1089,8 +1089,7 @@ describe('Technical', () => {
   }
 
   // --- No plain-text email addresses in HTML body ---
-  // Utility pages (privacy, legal) are exempt as they legally need contact info
-  for (const page of CONTENT_PAGES) {
+  for (const page of NEW_PAGES) {
     it(`${page} — no plain-text email addresses in body`, () => {
       if (!pageExists(page)) return;
       const $ = loadPage(page);

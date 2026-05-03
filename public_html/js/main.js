@@ -85,6 +85,21 @@ document.addEventListener('DOMContentLoaded', () => {
         el.textContent = [el.dataset.f, el.dataset.m, el.dataset.l, el.dataset.s].join('');
     });
 
+    // --- VAT Number Rendering (anti-scraping) ---
+    const vatEl = document.getElementById('vat-number');
+    if (vatEl) {
+        vatEl.textContent = ['BE04', '57.', '451', '.40', '6'].join('');
+    }
+
+    // --- Email Rendering (anti-scraping) ---
+    document.querySelectorAll('.protected-email').forEach(el => {
+        const addr = [el.dataset.u, '@', el.dataset.d].join('');
+        const link = document.createElement('a');
+        link.href = 'mailto:' + addr;
+        link.textContent = addr;
+        el.appendChild(link);
+    });
+
     // --- Method Finder Wizard ---
     const wizard = document.getElementById('finder-wizard');
     if (wizard) {
