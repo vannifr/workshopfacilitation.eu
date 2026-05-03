@@ -28,6 +28,7 @@ const NEW_PAGES = [
   'case-eu-agency-liberating-structures.html',
   'privacy.html',
   'legal.html',
+  'open-space-facilitation.html',
 ];
 
 // Pages with full content treatment (sticky CTA, trust signals etc.)
