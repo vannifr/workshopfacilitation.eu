@@ -2103,3 +2103,72 @@ footer a:hover {
         scrollbar-width: thin;
     }
 }
+
+
+/* Sticky Mobile CTA */
+.sticky-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--clr-deep);
+    padding: var(--sp-md) var(--sp-lg);
+    text-align: center;
+    box-shadow: 0 -2px 12px rgb(0 0 0 / 15%);
+    transform: translateY(100%);
+    transition: transform var(--t-med);
+}
+
+.sticky-cta.is-visible {
+    transform: translateY(0);
+}
+
+.sticky-cta .btn {
+    width: 100%;
+    max-width: 320px;
+}
+
+@media (width <= 768px) {
+    .sticky-cta {
+        display: block;
+    }
+}
+
+
+/* Method Finder Email Capture */
+.finder-email-capture {
+    margin-top: var(--sp-lg);
+    padding-top: var(--sp-lg);
+    border-top: 1px solid var(--clr-border);
+}
+
+.finder-email-capture p {
+    font-size: 0.95rem;
+    color: var(--clr-muted);
+    margin-bottom: var(--sp-sm);
+}
+
+.finder-email-row {
+    display: flex;
+    gap: var(--sp-sm);
+    flex-wrap: wrap;
+}
+
+.finder-email-row input[type="email"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.6rem var(--sp-md);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    background: var(--clr-warm-white);
+    color: var(--clr-charcoal);
+}
+
+.finder-email-row input[type="email"]:focus {
+    outline: none;
+    border-color: var(--clr-teal);
+}

@@ -141,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             rec.innerHTML = html;
             result.style.display = '';
+            const hiddenResult = document.getElementById('finder-email-result-hidden');
+            if (hiddenResult) hiddenResult.value = rec.innerText;
         }
 
         function getRecommendation(challenge, size, setting) {
@@ -182,6 +184,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
             return recs;
         }
+    }
+
+    // --- Sticky Mobile CTA ---
+    const stickyCta = document.getElementById('sticky-cta');
+    if (stickyCta) {
+        const heroCta = document.querySelector('#hero .btn, .hero .btn, #cta-home .btn');
+        const stickyLink = stickyCta.querySelector('a');
+        const observer = new IntersectionObserver((entries) => {
+            const heroVisible = entries.some(e => e.isIntersecting);
+            stickyCta.classList.toggle('is-visible', !heroVisible);
+            if (stickyLink) stickyLink.setAttribute('tabindex', heroVisible ? '-1' : '0');
+        }, { threshold: 0.5 });
+        if (heroCta) observer.observe(heroCta);
+        else stickyCta.classList.add('is-visible');
     }
 
     // --- Contact Form Submission ---
