@@ -29,6 +29,7 @@ const NEW_PAGES = [
   'privacy.html',
   'legal.html',
   'open-space-facilitation.html',
+  'virtual-facilitation.html',
 ];
 
 // Pages with full content treatment (sticky CTA, trust signals etc.)

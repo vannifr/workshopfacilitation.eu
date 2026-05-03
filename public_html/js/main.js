@@ -69,20 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
     
-    // --- Phone Number Rendering (anti-scraping) ---
-    const phoneEl = document.getElementById('phone-number');
-    if (phoneEl) {
-        const p = ['+3','2 4','78',' 56',' 27',' 46'];
-        const num = p.join('');
-        const link = document.createElement('a');
-        link.href = 'tel:' + num.replace(/\s/g, '');
-        link.textContent = num;
-        phoneEl.appendChild(link);
-    }
-
     // --- Protected Name Rendering (anti-scraping) ---
     document.querySelectorAll('.protected-name').forEach(el => {
-        el.textContent = [el.dataset.f, el.dataset.m, el.dataset.l, el.dataset.s].join('');
+        el.textContent = [el.dataset.f, el.dataset.m, el.dataset.l, el.dataset.s].filter(Boolean).join('');
     });
 
     // --- VAT Number Rendering (anti-scraping) ---
