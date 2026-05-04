@@ -1214,7 +1214,6 @@ select:focus-visible {
     height: 140px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto;
     -webkit-user-drag: none;
     user-select: none;
     margin: 0 auto var(--sp-md) auto;
@@ -1314,6 +1313,7 @@ select:focus-visible {
 .protected-name span::before {
     content: attr(data-c);
 }
+
 .protected-name span {
     user-select: none;
 }
