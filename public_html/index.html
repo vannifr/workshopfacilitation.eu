@@ -17,10 +17,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wlghie0yoa");
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -48,12 +56,13 @@
     <main id="main-content">
         <section id="hero" class="animate-on-scroll">
             <div class="hero-content">
-                <h1 class="animate-on-scroll">Your team has the answer. They just won't say it in the meeting.</h1>
+                <h1 class="animate-on-scroll">Every voice heard. One decision your whole team owns.</h1>
                 <p class="animate-on-scroll">A few people talk. Everyone else checks out. Decisions get made — then quietly ignored. We design sessions where every voice in the room contributes and decisions actually hold. For multicultural teams across Europe, in English, Dutch, and French.</p>
                 <div class="hero-ctas animate-on-scroll">
                     <a href="contact.html" class="btn">Book a Discovery Call</a>
                     <a href="for-facilitators.html" class="btn btn-ghost">Learn Facilitation Skills</a>
                 </div>
+                <p class="hero-cta-note animate-on-scroll">30 min &middot; no pitch &middot; no pressure</p>
             </div>
             <div class="hero-image-placeholder animate-on-scroll">
                 <img src="images/conversations.webp" alt="Team engaged in a facilitated workshop conversation" width="600" height="400">
@@ -61,13 +70,28 @@
         </section>
 
         <section id="social-proof" class="animate-on-scroll">
-            <p class="proof-label">Trusted by teams in</p>
+            <div class="proof-stats animate-on-scroll">
+                <div class="proof-stat">
+                    <span class="proof-stat-number">25+</span>
+                    <span class="proof-stat-label">years facilitating</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-stat-number">3</span>
+                    <span class="proof-stat-label">languages</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-stat-number">6</span>
+                    <span class="proof-stat-label">sectors served</span>
+                </div>
+            </div>
             <div class="proof-sectors">
+                <span class="proof-label">Trusted by teams in</span>
                 <span>Technology</span>
                 <span>Manufacturing</span>
                 <span>Nonprofits</span>
                 <span>Academia</span>
                 <span>Financial Services</span>
+                <span>Public Sector</span>
             </div>
             <p class="proof-languages">We facilitate in English, Dutch, and French.</p>
         </section>
@@ -76,7 +100,7 @@
             <h2 class="animate-on-scroll">Two ways we can help</h2>
             <div class="audience-grid">
                 <div class="audience-card animate-on-scroll">
-                    <h3><i class="fas fa-users"></i> For Teams &amp; Organizations</h3>
+                    <h3><i class="fas fa-users"></i> My team needs to move forward</h3>
                     <p>You have a challenge that needs structured collaboration. We design the session, facilitate it, and make sure you leave with clear decisions and next steps.</p>
                     <ul>
                         <li>Strategic planning and alignment</li>
@@ -86,7 +110,7 @@
                     <a href="for-teams.html" class="btn">See how we work with teams</a>
                 </div>
                 <div class="audience-card animate-on-scroll">
-                    <h3><i class="fas fa-graduation-cap"></i> For Facilitators &amp; Coaches</h3>
+                    <h3><i class="fas fa-graduation-cap"></i> I want to learn facilitation skills</h3>
                     <p>You already run meetings and workshops. You want better tools. We teach structured facilitation methods through hands-on training and coaching.</p>
                     <ul>
                         <li>Liberating Structures practitioner training</li>
@@ -129,15 +153,54 @@
             </div>
         </section>
 
-        <section id="home-testimonial" class="animate-on-scroll">
-            <blockquote class="testimonial featured-testimonial">
-                <p>"We now accomplish more in shorter meetings, with everyone actively contributing. The facilitation tools we learned continue to serve us daily."</p>
-                <cite>— VP of Product, Global Technology Company</cite>
-                <div class="testimonial-context">
-                    <span class="challenge"><strong>Challenge:</strong> Global team with disengagement and missed deadlines</span>
-                    <span class="outcome"><strong>Result:</strong> Shorter meetings, faster decisions, higher team satisfaction</span>
+        <section id="home-facilitators" class="animate-on-scroll">
+            <h2>Who facilitates</h2>
+            <div class="facilitator-mini-grid">
+                <div class="facilitator-mini animate-on-scroll">
+                    <div class="protected-img"><img src="images/facilitator-coach.webp" alt="Lead Facilitator and Coach at Inclusive Dynamics" class="facilitator-img" loading="lazy" width="590" height="590"></div>
+                    <h3><span data-nosnippet class="protected-name" data-f="Fr" data-m="éd" data-l="éric" data-s=""></span></h3>
+                    <p>Lead Facilitator &amp; Coach &middot; 15+ years &middot; EN / FR</p>
                 </div>
-            </blockquote>
+                <div class="facilitator-mini animate-on-scroll">
+                    <div class="protected-img"><img src="images/facilitator-agile.webp" alt="Agile Team Facilitator at Inclusive Dynamics" class="facilitator-img" loading="lazy" width="719" height="719"></div>
+                    <h3><span data-nosnippet class="protected-name" data-f="Fred" data-m="erik" data-l="" data-s=""></span></h3>
+                    <p>Agile Team Facilitator &middot; 10+ years &middot; EN / NL</p>
+                </div>
+            </div>
+            <p class="facilitator-mini-link"><a href="about.html">Meet us properly &rarr;</a></p>
+        </section>
+
+        <section id="home-testimonials" class="animate-on-scroll">
+            <h2>What clients say</h2>
+            <div class="testimonials-grid">
+                <blockquote class="testimonial-card animate-on-scroll">
+                    <p>"Our team was pulling in different directions. Through structured facilitation, we achieved more alignment in a single day than we had in months of regular meetings."</p>
+                    <cite>— Product Director, Global Tech Company</cite>
+                    <div class="testimonial-context">
+                        <span class="challenge"><strong>Challenge:</strong> Cross-functional team stuck on roadmap priorities for months</span>
+                        <span class="outcome"><strong>Result:</strong> Shared direction agreed in one session</span>
+                    </div>
+                    <span class="testimonial-sector">Technology</span>
+                </blockquote>
+                <blockquote class="testimonial-card animate-on-scroll">
+                    <p>"We now accomplish more in shorter meetings, with everyone actively contributing. The facilitation tools we learned continue to serve us daily."</p>
+                    <cite>— VP of Product, Global Technology Company</cite>
+                    <div class="testimonial-context">
+                        <span class="challenge"><strong>Challenge:</strong> Global team with disengagement and missed deadlines</span>
+                        <span class="outcome"><strong>Result:</strong> Shorter meetings, faster decisions, higher team satisfaction</span>
+                    </div>
+                    <span class="testimonial-sector">Technology</span>
+                </blockquote>
+                <blockquote class="testimonial-card animate-on-scroll">
+                    <p>"A decision we had been unable to make for six months got made in one facilitated session. And it held — no one quietly walked it back afterwards."</p>
+                    <cite>— Department Head, European Public Institution</cite>
+                    <div class="testimonial-context">
+                        <span class="challenge"><strong>Challenge:</strong> Investment priorities blocked by competing interests across departments</span>
+                        <span class="outcome"><strong>Result:</strong> Decision reached and implemented after one session</span>
+                    </div>
+                    <span class="testimonial-sector">Public Sector</span>
+                </blockquote>
+            </div>
         </section>
 
         <section id="cta-home" class="animate-on-scroll">
@@ -177,10 +240,7 @@
         "@type": "ContactPoint",
         "contactType": "Enquiry",
         "availableLanguage": ["English", "Dutch", "French"]
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/inclusive-dynamics-workshop-facilitation/"
-      ]
+      }
     }
     </script>
 
@@ -208,6 +268,7 @@
     <script src="js/main.js"></script>
     <div class="sticky-cta" id="sticky-cta">
         <a href="contact.html" class="btn">Book a Discovery Call</a>
+        <button type="button" class="sticky-cta-close" aria-label="Dismiss">&times;</button>
     </div>
 </body>
 </html>

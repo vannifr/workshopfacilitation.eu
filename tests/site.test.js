@@ -30,6 +30,8 @@ const NEW_PAGES = [
   'legal.html',
   'open-space-facilitation.html',
   'virtual-facilitation.html',
+  'team-coaching.html',
+  'visual-facilitation.html',
 ];
 
 // Pages with full content treatment (sticky CTA, trust signals etc.)
@@ -175,17 +177,17 @@ describe('SEO', () => {
     );
   });
 
-  // --- Title length ≤60 chars ---
+  // --- Title length 20–60 chars ---
   for (const page of NEW_PAGES) {
-    it(`${page} — <title> is ≤60 characters`, () => {
+    it(`${page} — <title> is 20–60 characters`, () => {
       if (!pageExists(page)) {
         assert.fail(`Page "${page}" does not exist yet`);
       }
       const $ = loadPage(page);
       const title = $('title').first().text().trim();
       assert.ok(
-        title.length > 0,
-        `${page}: <title> is empty`
+        title.length >= 20,
+        `${page}: <title> too short (${title.length} chars, min 20): "${title}"`
       );
       assert.ok(
         title.length <= 60,
@@ -193,6 +195,18 @@ describe('SEO', () => {
       );
     });
   }
+
+  // --- Homepage H1 word count ≤12 ---
+  it('homepage H1 is ≤12 words', () => {
+    if (!pageExists('index.html')) return;
+    const $ = loadPage('index.html');
+    const h1Text = $('h1').first().text().trim();
+    const wordCount = h1Text.split(/\s+/).filter(Boolean).length;
+    assert.ok(
+      wordCount <= 12,
+      `index.html: H1 is ${wordCount} words (max 12): "${h1Text}"`
+    );
+  });
 
   // --- Title contains brand name ---
   for (const page of NEW_PAGES) {
@@ -445,6 +459,19 @@ describe('Accessibility', () => {
     });
   }
 
+  // --- Viewport meta tag ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — has viewport meta tag`, () => {
+      if (!pageExists(page)) return;
+      const $ = loadPage(page);
+      const viewport = $('meta[name="viewport"]').attr('content');
+      assert.ok(
+        viewport && viewport.length > 0,
+        `${page}: missing or empty <meta name="viewport">`
+      );
+    });
+  }
+
   // --- lang attribute ---
   for (const page of NEW_PAGES) {
     it(`${page} — <html> has lang attribute`, () => {
@@ -584,6 +611,28 @@ describe('Navigation', () => {
     );
   });
 
+  // --- Fragment anchors resolve (#finder-wizard) ---
+  it('links with fragment anchors point to existing elements', () => {
+    const broken = [];
+    for (const page of NEW_PAGES) {
+      if (!pageExists(page)) continue;
+      const $ = loadPage(page);
+      $('a[href*="#"]').each((_, el) => {
+        const href = $(el).attr('href') || '';
+        if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto:')) return;
+        const [file, fragment] = href.split('#');
+        if (!fragment || !file) return;
+        const targetPath = path.join(SITE_DIR, file);
+        if (!fs.existsSync(targetPath)) return; // caught by broken-links test
+        const target$ = cheerio.load(fs.readFileSync(targetPath, 'utf-8'));
+        if (target$(`[id="${fragment}"]`).length === 0) {
+          broken.push(`${page} -> ${href} (fragment #${fragment} not found in ${file})`);
+        }
+      });
+    }
+    assert.equal(broken.length, 0, `Broken fragment anchors:\n  ${broken.join('\n  ')}`);
+  });
+
   // --- No broken internal links ---
   it('no broken internal links across all pages', () => {
     const broken = [];
@@ -651,18 +700,73 @@ describe('Content', () => {
     );
   });
 
-  it('contact page has a visible phone number', () => {
+  it('contact page has WhatsApp link with anti-scraping data attributes', () => {
     if (!pageExists('contact.html')) {
       assert.fail('contact.html does not exist yet');
     }
     const $ = loadPage('contact.html');
-    const html = $.html();
-    // Look for tel: links or phone number patterns
-    const hasTelLink = $('a[href^="tel:"]').length > 0;
-    const hasPhonePattern = /(\+?\d[\d\s\-().]{7,})/.test(html);
+    const waEl = $('#whatsapp-link');
+    assert.ok(waEl.length > 0, 'contact.html: #whatsapp-link element not found');
+    ['data-p1', 'data-p2', 'data-p3', 'data-p4', 'data-p5'].forEach((attr) => {
+      assert.ok(
+        waEl.attr(attr) && waEl.attr(attr).trim().length > 0,
+        `contact.html: #whatsapp-link missing or empty ${attr}`
+      );
+    });
+    const assembled = ['data-p1','data-p2','data-p3','data-p4','data-p5']
+      .map((a) => waEl.attr(a)).join('');
     assert.ok(
-      hasTelLink || hasPhonePattern,
-      'contact.html: no visible phone number found (expected a tel: link or phone number pattern)'
+      /^\d{10,13}$/.test(assembled),
+      `contact.html: reassembled WhatsApp number "${assembled}" is not a valid international number`
+    );
+    // Ensure no tel: link exists (phone intentionally removed)
+    assert.equal(
+      $('a[href^="tel:"]').length,
+      0,
+      'contact.html: tel: link found — phone number should be removed (use WhatsApp anti-scraping approach)'
+    );
+  });
+
+  it('contact form has a privacy note', () => {
+    if (!pageExists('contact.html')) return;
+    const $ = loadPage('contact.html');
+    assert.ok(
+      $('.form-privacy').length > 0,
+      'contact.html: no .form-privacy element found under the contact form'
+    );
+  });
+
+  it('contact form has at most 3 required fields', () => {
+    if (!pageExists('contact.html')) return;
+    const $ = loadPage('contact.html');
+    const required = $('#contact-form input[required], #contact-form textarea[required], #contact-form select[required]');
+    assert.ok(
+      required.length <= 3,
+      `contact.html: contact form has ${required.length} required fields (max 3)`
+    );
+    assert.ok(
+      required.length >= 2,
+      `contact.html: contact form has only ${required.length} required fields (expected at least 2)`
+    );
+  });
+
+  it('homepage has facilitator photos', () => {
+    if (!pageExists('index.html')) return;
+    const $ = loadPage('index.html');
+    const photos = $('img.facilitator-img');
+    assert.ok(
+      photos.length >= 2,
+      `index.html: expected at least 2 facilitator photos (img.facilitator-img) but found ${photos.length}`
+    );
+  });
+
+  it('homepage has at least 3 testimonials', () => {
+    if (!pageExists('index.html')) return;
+    const $ = loadPage('index.html');
+    const testimonials = $('.testimonial-card, blockquote.testimonial-card, .featured-testimonial');
+    assert.ok(
+      testimonials.length >= 3,
+      `index.html: expected at least 3 testimonials but found ${testimonials.length}`
     );
   });
 
@@ -703,14 +807,16 @@ describe('Content', () => {
 
   // --- Sticky CTA on all content pages ---
   for (const page of CONTENT_PAGES) {
-    it(`${page} — has sticky CTA (#sticky-cta)`, () => {
+    it(`${page} — has sticky CTA (#sticky-cta) with close button`, () => {
       if (!pageExists(page)) {
         assert.fail(`Page "${page}" does not exist yet`);
       }
       const $ = loadPage(page);
+      const cta = $('#sticky-cta');
+      assert.ok(cta.length > 0, `${page}: no #sticky-cta element found`);
       assert.ok(
-        $('#sticky-cta').length > 0,
-        `${page}: no #sticky-cta element found`
+        cta.find('.sticky-cta-close').length > 0,
+        `${page}: #sticky-cta is missing a .sticky-cta-close dismiss button`
       );
     });
   }
@@ -1102,6 +1208,52 @@ describe('Technical', () => {
       assert.ok(
         !match,
         `${page}: plain-text email found in body HTML: "${match?.[0]}". Obfuscate or remove.`
+      );
+    });
+  }
+
+  // --- Microsoft Clarity tracking script ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — has Microsoft Clarity script`, () => {
+      if (!pageExists(page)) return;
+      const html = fs.readFileSync(path.join(SITE_DIR, page), 'utf-8');
+      assert.ok(
+        html.includes('clarity.ms/tag/'),
+        `${page}: Microsoft Clarity script not found in page source`
+      );
+    });
+  }
+
+  // --- Protected-name spans have no static fallback text ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — .protected-name spans have no visible fallback text`, () => {
+      if (!pageExists(page)) return;
+      const $ = loadPage(page);
+      const bad = [];
+      $('.protected-name').each((_, el) => {
+        const text = $(el).text().trim();
+        if (text) bad.push(`"${text}"`);
+      });
+      assert.equal(
+        bad.length,
+        0,
+        `${page}: .protected-name spans contain static fallback text (visible before JS): ${bad.join(', ')}`
+      );
+    });
+  }
+
+  // --- No personal last names in body HTML ---
+  for (const page of NEW_PAGES) {
+    it(`${page} — no personal last names in body HTML`, () => {
+      if (!pageExists(page)) return;
+      const $ = loadPage(page);
+      const bodyHtml = ($('body').html() || '').replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '');
+      const lastNames = ['Vandaele', 'Vannieuwenhuyse'];
+      const found = lastNames.filter((name) => bodyHtml.includes(name));
+      assert.equal(
+        found.length,
+        0,
+        `${page}: personal last names found in body HTML (scraping risk): ${found.join(', ')}`
       );
     });
   }

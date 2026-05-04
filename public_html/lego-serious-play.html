@@ -30,11 +30,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wlghie0yoa");
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -60,11 +68,18 @@
     </header>
 
     <main id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="methods.html">Methods</a></li>
+                <li aria-current="page">LEGO® Serious Play®</li>
+            </ol>
+        </nav>
         <section id="lsp-intro" class="animate-on-scroll">
             <h1 class="animate-on-scroll">LEGO® Serious Play® — when the conversation is stuck, build it instead</h1>
             <p class="animate-on-scroll">Some things are hard to say out loud. A model made of LEGO bricks is easier to talk about than a direct opinion. That distance — between the person and the model — is what makes LEGO® Serious Play® work in situations where a straight conversation would stall or stay on the surface.</p>
             <div class="lsp-intro-image-container animate-on-scroll">
-                <img src="images/lego-serious-play.webp" alt="LEGO Serious Play workshop in action" loading="lazy" width="1200" height="874">
+                <img src="images/lego-serious-play.webp" alt="LEGO Serious Play workshop in action" loading="lazy" width="1200" height="874" class="content-img">
             </div>
         </section>
 
@@ -263,6 +278,7 @@
     <script src="js/main.js"></script>
     <div class="sticky-cta" id="sticky-cta">
         <a href="contact.html" class="btn">Book a Discovery Call</a>
+        <button type="button" class="sticky-cta-close" aria-label="Dismiss">&times;</button>
     </div>
 </body>
 </html> 

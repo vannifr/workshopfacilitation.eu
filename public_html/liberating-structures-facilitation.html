@@ -21,11 +21,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wlghie0yoa");
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -51,6 +59,13 @@
     </header>
 
     <main id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="methods.html">Methods</a></li>
+                <li aria-current="page">Liberating Structures</li>
+            </ol>
+        </nav>
         <section id="ls-intro" class="animate-on-scroll">
             <h1 class="animate-on-scroll">Liberating Structures facilitation — 33 ways to run a meeting where everyone actually speaks</h1>
             <p class="animate-on-scroll">In a conventional meeting, three people talk and fifteen wait for it to end. Liberating Structures replaces that pattern with simple structures where every person contributes from the first minute. Not because you asked them nicely. Because the format makes it impossible not to.</p>
@@ -129,6 +144,7 @@
             <p><a href="contact.html" class="btn">Book a Discovery Call</a></p>
             <p>Want to learn the structures yourself? See our <a href="for-facilitators.html">training options</a>.</p>
             <p>More from the Belgian community: <a href="https://www.liberatingstructures.be/" target="_blank" rel="noopener noreferrer">liberatingstructures.be</a></p>
+            <img src="images/liberating-structures-book.webp" alt="The Liberating Structures book by Henri Lipmanowicz and Keith McCandless" loading="lazy" width="278" height="320" class="book-img">
         </section>
 
         <section id="related-services" class="animate-on-scroll">
@@ -172,6 +188,7 @@
     <script src="js/main.js"></script>
     <div class="sticky-cta" id="sticky-cta">
         <a href="contact.html" class="btn">Book a Discovery Call</a>
+        <button type="button" class="sticky-cta-close" aria-label="Dismiss">&times;</button>
     </div>
 </body>
 </html> 

@@ -15,10 +15,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wlghie0yoa");
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -44,10 +52,17 @@
     </header>
 
     <main id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="methods.html">Methods</a></li>
+                <li aria-current="page">Visual Harvesting</li>
+            </ol>
+        </nav>
         <section id="vh-intro" class="animate-on-scroll">
             <h1 class="animate-on-scroll">Visual harvesting — your team thinks better when the thinking is on the wall</h1>
             <p class="animate-on-scroll">In most meetings, ideas live in people's heads or on their laptops. They get spoken once and forgotten. Visual harvesting captures ideas and concepts in real time — on large sheets, flip charts, or digital canvases — so the group can see, react to, and build on what they've produced together.</p>
-            <img src="images/visual-facilitation-kit.webp" alt="Visual facilitation tools including Neuland markers and paper" class="animate-on-scroll" loading="lazy" width="700" height="700">
+            <img src="images/visual-facilitation-kit.webp" alt="Visual facilitation tools including Neuland markers and paper" class="animate-on-scroll content-img" loading="lazy" width="700" height="700">
         </section>
 
         <section id="vh-what" class="animate-on-scroll">
@@ -137,6 +152,7 @@
     <script src="js/main.js"></script>
     <div class="sticky-cta" id="sticky-cta">
         <a href="contact.html" class="btn">Book a Discovery Call</a>
+        <button type="button" class="sticky-cta-close" aria-label="Dismiss">&times;</button>
     </div>
 </body>
 </html>

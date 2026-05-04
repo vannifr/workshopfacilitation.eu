@@ -21,11 +21,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wlghie0yoa");
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -51,6 +59,13 @@
     </header>
 
     <main id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="methods.html">Methods</a></li>
+                <li aria-current="page">Consent Decision Making</li>
+            </ol>
+        </nav>
         <section id="consent-intro" class="animate-on-scroll">
             <h1 class="animate-on-scroll">Consent Decision Making — faster decisions that actually hold</h1>
             <p class="animate-on-scroll">Consensus means everyone agrees. That rarely happens. Majority voting means someone loses. That breeds resistance. Consent works differently: a decision moves forward when nobody has a reasoned objection to it. Not everyone's preference. No losers. Faster than both, and the decisions stick.</p>
@@ -60,12 +75,13 @@
             <h2>What is Consent Decision Making?</h2>
             <p class="animate-on-scroll">Consent Decision Making is a structured process for groups to develop and test proposals. The key distinction is between three different responses:</p>
             <ul class="animate-on-scroll">
-                <li><i class="fas fa-thumbs-up"></i> <strong>Preference</strong> — "I'd do it differently, but I can live with this"</li>
+                <li><i class="fas fa-check-circle"></i> <strong>No objection</strong> — "I'd do it differently, but I can live with this"</li>
                 <li><i class="fas fa-exclamation-circle"></i> <strong>Concern</strong> — "I'm worried, but it doesn't block the decision"</li>
                 <li><i class="fas fa-hand-paper"></i> <strong>Objection</strong> — "This will cause a specific, demonstrable harm"</li>
             </ul>
             <p class="animate-on-scroll">Only a genuine objection stops a proposal. And objections are not vetoes — they're information the group uses to improve the proposal until it no longer causes harm.</p>
             <p class="animate-on-scroll">The method has roots in Sociocracy and Sociocracy 3.0 (S3), and has been adapted for practical use in teams with no governance background.</p>
+            <img src="images/consent-effective-inclusive.webp" alt="Diagram showing how consent decision making is both effective and inclusive" loading="lazy" width="980" height="625" class="animate-on-scroll diagram-img">
         </section>
 
         <section id="consent-when-not" class="animate-on-scroll">
@@ -101,6 +117,11 @@
             <div class="case-study">
                 <h3>Policy development: all levels, one round</h3>
                 <p>A nonprofit needed a new communications policy that reflected input from all levels of the organisation. Consent Decision Making let every voice shape the proposal without turning the process into an endless negotiation.</p>
+            </div>
+
+            <div class="case-study">
+                <h3>Leadership team: moving from consensus paralysis to workable agreements</h3>
+                <p>A leadership team of eight had been operating on implicit consensus — which meant that any single objection could block any decision indefinitely. Switching to a consent-based process changed the question from "does everyone agree?" to "can everyone live with this?" Decisions that had been deferred for months moved in a single session. The team kept the practice after we left.</p>
             </div>
         </section>
 
@@ -157,6 +178,7 @@
     <script src="js/main.js"></script>
     <div class="sticky-cta" id="sticky-cta">
         <a href="contact.html" class="btn">Book a Discovery Call</a>
+        <button type="button" class="sticky-cta-close" aria-label="Dismiss">&times;</button>
     </div>
 </body>
 </html> 

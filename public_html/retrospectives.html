@@ -15,10 +15,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="css/style.css">
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "wlghie0yoa");
+    </script>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -44,6 +52,13 @@
     </header>
 
     <main id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="methods.html">Methods</a></li>
+                <li aria-current="page">Retrospectives</li>
+            </ol>
+        </nav>
         <section id="retro-intro" class="animate-on-scroll">
             <h1 class="animate-on-scroll">Facilitated retrospectives — structured improvement that sticks between sessions</h1>
             <p class="animate-on-scroll">Most retrospectives produce a list. Someone writes it down. Nothing changes. Next retrospective, the same issues are back on the wall. A well-facilitated retrospective is different: it surfaces the real problem, not the symptom, and produces one or two specific experiments the team will actually run before the next session.</p>
@@ -53,6 +68,21 @@
             <h2>What is a retrospective?</h2>
             <p class="animate-on-scroll">A retrospective is a structured team meeting to review how the team is working — not what they produced. It happens at specific moments: end of a project, end of a sprint, after a critical incident, or at regular intervals in a long programme.</p>
             <p class="animate-on-scroll">Done well, a retrospective is the team's repair loop. Done badly, it's a morale drain where people say what's expected and leave unchanged.</p>
+        </section>
+
+        <section id="retro-root-cause" class="animate-on-scroll">
+            <h2>Why jumping to solutions keeps the problem alive</h2>
+            <p class="animate-on-scroll">The most common failure in a retrospective is not running out of time or having a dominant voice. It's moving from problem to solution without understanding the cause. Someone names an issue. The group agrees it's real. Someone proposes a fix. The group adopts it and moves on. Three sprints later, the same issue is back on the wall.</p>
+            <p class="animate-on-scroll">The fix was real. It just addressed the symptom, not what produced the symptom. Root cause analysis is the step that most retrospectives skip — because it's slower, more uncomfortable, and requires the group to sit with a problem instead of resolving it immediately.</p>
+
+            <h3 class="animate-on-scroll">What root cause analysis looks like in a retrospective</h3>
+            <ul>
+                <li class="animate-on-scroll"><strong>5 Whys</strong> — ask "why did that happen?" five times in sequence. The first answer is usually a symptom. The fifth is usually a system.</li>
+                <li class="animate-on-scroll"><strong>Timeline analysis</strong> — reconstruct the sequence of events without assigning blame. What was the first moment the problem became possible?</li>
+                <li class="animate-on-scroll"><strong>Fishbone (Ishikawa)</strong> — map contributing causes across people, process, tools, and environment. Useful when causes are multiple and interacting.</li>
+                <li class="animate-on-scroll"><strong>TRIZ</strong> — a Liberating Structures technique that asks: what would we have to do to guarantee this problem got worse? Surfacing the inverse is often faster than naming the cause directly.</li>
+            </ul>
+            <p class="animate-on-scroll">The test: you have understood the root cause when you can explain not just that the problem happened, but what in your system made it possible — and would make it happen again without a change to that system.</p>
         </section>
 
         <section id="retro-when-not" class="animate-on-scroll">
@@ -76,6 +106,34 @@
             </ul>
         </section>
 
+        <section id="retro-five-steps" class="animate-on-scroll">
+            <h2>From good to great: five steps every retrospective needs</h2>
+            <p class="animate-on-scroll">A good retrospective runs through a format and closes with a list. A great one moves the team through five distinct phases — each one building on the last. Skipping any phase is what turns a retrospective into a complaint session or a rubber-stamp.</p>
+
+            <ol class="retro-steps">
+                <li class="animate-on-scroll">
+                    <strong>Set the stage</strong>
+                    <p>Before any data is shared, establish how the group will work together. State the prime directive — that everyone did the best they could given what they knew and the situation they were in. This isn't a nicety; it's what makes honest conversation safe. A retrospective that skips this step gets polished answers instead of real ones.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <strong>Gather data</strong>
+                    <p>What actually happened? Facts, timelines, metrics — and also perceptions, emotions, and energy levels. Both kinds of data matter. A team that only reports facts misses half of what shaped the outcome. A team that only reports feelings has no anchor to the real sequence of events.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <strong>Generate insights</strong>
+                    <p>This is where root cause analysis belongs — and where most retrospectives stop being good and start being great. The question is not "what should we do differently?" It's "why did this happen, and what in our system made it possible?" Take the time to go three or four levels deeper than the first answer. The real cause is almost always further down than it looks.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <strong>Decide what to do</strong>
+                    <p>One or two specific experiments. Each one has an owner, a time limit, and a way to know whether it worked. Not a list of improvements. Not "we should try to…". A named person running a specific change by a specific date. Everything else stays on the backlog.</p>
+                </li>
+                <li class="animate-on-scroll">
+                    <strong>Close the retrospective</strong>
+                    <p>Check the energy in the room. Ask one person to name something they're taking from the session. Appreciate what the group did together. A retrospective that ends abruptly with "ok that's time" loses half its value — the close is what converts insight into intention.</p>
+                </li>
+            </ol>
+        </section>
+
         <section id="retro-in-action" class="animate-on-scroll">
             <h2>Retrospectives in practice</h2>
 
@@ -87,6 +145,11 @@
             <div class="case-study">
                 <h3>Project close-out: extracting real lessons</h3>
                 <p>After a difficult 18-month project, the organisation wanted a proper close-out retrospective — not a feel-good summary, but an honest account of what happened and why. We facilitated a structured session that produced a reusable decision-making framework for the next project of the same type.</p>
+            </div>
+
+            <div class="case-study">
+                <h3>Cross-functional team: surfacing what nobody was saying</h3>
+                <p>A team had been running monthly retrospectives for a year. The outputs were positive. The problems kept coming back. The real issue — a structural bottleneck in how the team handed off work between two sub-groups — had never been named because neither group felt safe raising it. A retrospective designed around psychological safety surfaced it in the first round. The team escalated the structural fix to management the same week.</p>
             </div>
         </section>
 
@@ -137,6 +200,7 @@
     <script src="js/main.js"></script>
     <div class="sticky-cta" id="sticky-cta">
         <a href="contact.html" class="btn">Book a Discovery Call</a>
+        <button type="button" class="sticky-cta-close" aria-label="Dismiss">&times;</button>
     </div>
 </body>
 </html>

@@ -22,13 +22,13 @@ html {
     --clr-deep: #1a3a3a;
     --clr-teal: #2a5a5a;
     --clr-sage: #6b8f71;
-    --clr-terra: #c75b39;
+    --clr-terra: #a94d30;
     --clr-terra-light: #e07850;
     --clr-cream: #faf5ee;
     --clr-warm-white: #fefcf8;
     --clr-sand: #f0e8d8;
     --clr-charcoal: #2d2d2d;
-    --clr-muted: #7a7468;
+    --clr-muted: #6e685e;
     --clr-border: #e5ddd0;
     --clr-overlay: rgb(26 58 58 / 85%);
 
@@ -708,6 +708,27 @@ select:focus-visible {
 }
 
 @media (width <= 768px) {
+    /* Facilitator cards — centre everything on mobile */
+    .facilitator-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .facilitator {
+        text-align: center;
+    }
+
+    .facilitator .protected-img {
+        margin: 0 auto var(--sp-md);
+    }
+
+    .facilitator-credentials {
+        justify-content: center;
+    }
+
+    .facilitator-mini-grid {
+        gap: var(--sp-lg);
+    }
+
     .nav-cta {
         display: block;
         margin: var(--sp-lg) var(--sp-md) 0;
@@ -816,12 +837,43 @@ select:focus-visible {
     background-color: var(--clr-warm-white);
 }
 
+.proof-stats {
+    display: flex;
+    justify-content: center;
+    gap: var(--sp-2xl);
+    margin-bottom: var(--sp-lg);
+    flex-wrap: wrap;
+}
+
+.proof-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15em;
+}
+
+.proof-stat-number {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--clr-deep);
+    line-height: 1;
+    font-variation-settings: 'opsz' 36;
+}
+
+.proof-stat-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--clr-muted);
+    font-weight: 500;
+}
+
 .proof-label {
     font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: var(--clr-muted);
-    margin-bottom: var(--sp-sm);
     font-weight: 500;
 }
 
@@ -829,7 +881,8 @@ select:focus-visible {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--sp-md) var(--sp-xl);
+    align-items: baseline;
+    gap: var(--sp-sm) var(--sp-lg);
     margin-bottom: var(--sp-sm);
 }
 
@@ -840,7 +893,7 @@ select:focus-visible {
     position: relative;
 }
 
-.proof-sectors span::after {
+.proof-sectors span:not(.proof-label)::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -855,6 +908,7 @@ select:focus-visible {
 .proof-languages {
     font-size: 0.92rem;
     color: var(--clr-muted);
+    margin-top: var(--sp-md);
 }
 
 
@@ -1130,13 +1184,28 @@ select:focus-visible {
 /* 20. Facilitator Profiles */
 .facilitator-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--sp-lg);
 }
 
 .facilitator h3 {
     margin-top: 0;
     color: var(--clr-deep);
+    text-align: center;
+}
+
+.protected-img {
+    position: relative;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.protected-img::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
 }
 
 .facilitator-img {
@@ -1145,6 +1214,9 @@ select:focus-visible {
     height: 140px;
     border-radius: 50%;
     object-fit: cover;
+    margin: 0 auto;
+    -webkit-user-drag: none;
+    user-select: none;
     margin: 0 auto var(--sp-md) auto;
     border: 3px solid var(--clr-sand);
     background-color: var(--clr-sand);
@@ -1238,7 +1310,80 @@ select:focus-visible {
 }
 
 
-/* 23. Method Grid */
+/* 23. Protected Name — rendered via CSS pseudo-element, not copyable */
+.protected-name span::before {
+    content: attr(data-c);
+}
+.protected-name span {
+    user-select: none;
+}
+
+/* 23b. Video Embed */
+.video-embed {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin: var(--sp-lg) 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #000;
+}
+
+.video-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 23b. Retro Steps */
+.retro-steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: retro-step;
+    margin-top: var(--sp-lg);
+}
+
+.retro-steps > li {
+    counter-increment: retro-step;
+    padding: var(--sp-md) var(--sp-md) var(--sp-md) 3.5rem;
+    position: relative;
+    border-left: 3px solid var(--clr-sage);
+    margin-bottom: var(--sp-md);
+    background: var(--clr-warm-white);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.retro-steps > li::before {
+    content: counter(retro-step);
+    position: absolute;
+    left: -1px;
+    top: var(--sp-md);
+    width: 2rem;
+    height: 2rem;
+    background: var(--clr-sage);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transform: translateX(-50%);
+}
+
+.retro-steps > li strong {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--clr-deep);
+    margin-bottom: var(--sp-sm);
+}
+
+.retro-steps > li p {
+    margin: 0;
+    color: var(--clr-text);
+}
+
+/* 24. Method Grid */
 .method-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -1701,10 +1846,11 @@ details > p {
 
 .intro-welcome-image {
     display: block;
-    max-width: 100%;
+    max-width: 320px;
+    width: 100%;
     height: auto;
     margin: var(--sp-lg) auto;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
 }
 
@@ -1772,7 +1918,7 @@ details > p {
 
 .lsp-intro-image-container {
     display: block;
-    max-width: 100%;
+    max-width: 380px;
     margin: 2rem auto;
     padding: 0 1rem;
     text-align: center;
@@ -1785,6 +1931,123 @@ details > p {
     box-shadow: var(--shadow-md);
 }
 
+
+/* General content images — responsive, constrained, centred */
+.content-img {
+    display: block;
+    max-width: 380px;
+    width: 100%;
+    height: auto;
+    margin: var(--sp-xl) auto 0;
+    border-radius: var(--radius-md);
+}
+
+/* Diagram images — constrained width, centred */
+.diagram-img {
+    display: block;
+    max-width: 420px;
+    width: 100%;
+    height: auto;
+    margin: var(--sp-xl) auto 0;
+    border-radius: var(--radius-md);
+}
+
+.book-img {
+    display: block;
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    margin: var(--sp-xl) auto 0;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+}
+
+/* Hero CTA note */
+.hero-cta-note {
+    margin-top: var(--sp-sm);
+    font-size: 0.85rem;
+    color: var(--clr-muted);
+    letter-spacing: 0.02em;
+}
+
+/* Testimonials grid (homepage) */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--sp-lg);
+    margin-top: var(--sp-lg);
+}
+
+/* Sector badge on testimonials */
+.testimonial-sector {
+    display: inline-block;
+    margin-top: var(--sp-md);
+    padding: 0.2em 0.7em;
+    border-radius: 2em;
+    background-color: var(--clr-sand);
+    color: var(--clr-muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+}
+
+/* Homepage facilitator mini-section */
+.facilitator-mini-grid {
+    display: flex;
+    gap: var(--sp-xl);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: var(--sp-lg);
+}
+
+.facilitator-mini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-sm);
+    text-align: center;
+}
+
+.facilitator-mini h3 {
+    font-size: 1.1rem;
+    color: var(--clr-deep);
+}
+
+.facilitator-mini p {
+    font-size: 0.88rem;
+    color: var(--clr-muted);
+}
+
+.facilitator-mini-link {
+    margin-top: var(--sp-lg);
+    text-align: center;
+}
+
+/* Sticky CTA dismiss button */
+.sticky-cta-close {
+    position: absolute;
+    top: 50%;
+    right: var(--sp-md);
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--clr-muted);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: var(--sp-xs) var(--sp-sm);
+}
+
+.sticky-cta-close:hover {
+    color: var(--clr-deep);
+}
+
+/* Contact form privacy note */
+.form-privacy {
+    margin-top: var(--sp-sm);
+    font-size: 0.8rem;
+    color: var(--clr-muted);
+}
 
 /* 32. Font Awesome Icon Spacing */
 i.fas, i.far, i.fab {
@@ -2115,7 +2378,6 @@ footer a:hover {
     z-index: 1000;
     background: var(--clr-deep);
     padding: var(--sp-md) var(--sp-lg);
-    text-align: center;
     box-shadow: 0 -2px 12px rgb(0 0 0 / 15%);
     transform: translateY(100%);
     transition: transform var(--t-med);
@@ -2126,13 +2388,15 @@ footer a:hover {
 }
 
 .sticky-cta .btn {
-    width: 100%;
-    max-width: 320px;
+    flex: 0 1 300px;
+    text-align: center;
 }
 
 @media (width <= 768px) {
     .sticky-cta {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
 
@@ -2171,4 +2435,82 @@ footer a:hover {
 .finder-email-row input[type="email"]:focus {
     outline: none;
     border-color: var(--clr-teal);
+}
+
+
+/* Certification badges */
+.cert-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-lg);
+    margin-top: var(--sp-lg);
+    justify-content: center;
+}
+
+.cert-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--sp-sm);
+    padding: var(--sp-lg);
+    background: var(--clr-warm-white);
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    min-width: 140px;
+    max-width: 180px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--clr-charcoal);
+    line-height: 1.4;
+    box-shadow: var(--shadow-sm);
+}
+
+.cert-badge img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.cert-icon {
+    font-size: 2rem;
+    color: var(--clr-teal);
+}
+
+
+/* Breadcrumb navigation */
+.breadcrumb {
+    margin-bottom: var(--sp-lg);
+}
+
+.breadcrumb ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.4em;
+    padding: 0;
+    font-size: 0.82rem;
+    color: var(--clr-muted);
+}
+
+.breadcrumb li + li::before {
+    content: '/';
+    margin-right: 0.4em;
+    opacity: 0.5;
+}
+
+.breadcrumb a {
+    color: var(--clr-muted);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus {
+    color: var(--clr-terra);
+    text-decoration: underline;
+}
+
+.breadcrumb [aria-current="page"] {
+    color: var(--clr-charcoal);
 }

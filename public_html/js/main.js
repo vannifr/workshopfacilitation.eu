@@ -69,15 +69,32 @@ document.addEventListener('DOMContentLoaded', () => {
         yearSpan.textContent = new Date().getFullYear();
     }
     
-    // --- Protected Name Rendering (anti-scraping) ---
+    // --- Protected Name Rendering (anti-scraping, anti-copy) ---
     document.querySelectorAll('.protected-name').forEach(el => {
-        el.textContent = [el.dataset.f, el.dataset.m, el.dataset.l, el.dataset.s].filter(Boolean).join('');
+        const parts = [el.dataset.f, el.dataset.m, el.dataset.l, el.dataset.s].filter(Boolean);
+        parts.forEach(part => {
+            const s = document.createElement('span');
+            s.dataset.c = part;
+            el.appendChild(s);
+        });
     });
 
     // --- VAT Number Rendering (anti-scraping) ---
     const vatEl = document.getElementById('vat-number');
     if (vatEl) {
         vatEl.textContent = ['BE04', '57.', '451', '.40', '6'].join('');
+    }
+
+    // --- WhatsApp Link Rendering (anti-scraping) ---
+    const waEl = document.getElementById('whatsapp-link');
+    if (waEl) {
+        const p = [waEl.dataset.p1, waEl.dataset.p2, waEl.dataset.p3, waEl.dataset.p4, waEl.dataset.p5];
+        const link = document.createElement('a');
+        link.href = 'https://wa.me/' + p.join('');
+        link.textContent = 'WhatsApp';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        waEl.appendChild(link);
     }
 
     // --- Email Rendering (anti-scraping) ---
@@ -154,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Primary recommendation based on challenge + size
             if (challenge === 'alignment' && (size === 'large' || size === 'xlarge')) {
-                recs.push({ name: 'Open Space Technology', reason: 'Self-organizing format that scales to hundreds. Surfaces real priorities from the group.', link: 'open-space-technology.html' });
+                recs.push({ name: 'Open Space Technology', reason: 'Self-organizing format that scales to hundreds. Surfaces real priorities from the group.', link: 'open-space-facilitation.html' });
             } else if (challenge === 'alignment') {
                 recs.push({ name: 'Liberating Structures', reason: 'Structured sequences like 1-2-4-All and Min Specs get everyone contributing to a shared direction.', link: 'liberating-structures-facilitation.html' });
             } else if (challenge === 'decisions') {
@@ -180,10 +197,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Secondary recommendation
-            if (setting === 'virtual' && !recs.some(r => r.name.includes('Liberating'))) {
-                recs.push({ name: 'Liberating Structures', reason: 'Works exceptionally well in virtual settings with breakout rooms.', link: 'liberating-structures-facilitation.html' });
+            if (setting === 'virtual') {
+                if (!recs.some(r => r.name.includes('Liberating'))) {
+                    recs.push({ name: 'Liberating Structures', reason: 'Works exceptionally well in virtual settings with breakout rooms.', link: 'liberating-structures-facilitation.html' });
+                } else {
+                    recs.push({ name: 'Virtual Facilitation', reason: 'Online sessions need a different design — shorter segments, structured breakouts, shared canvases. We design for the medium.', link: 'virtual-facilitation.html' });
+                }
+            } else if (challenge === 'team-building') {
+                recs.push({ name: 'Team Coaching', reason: 'If this is an ongoing pattern rather than a one-time event, sustained coaching over months produces changes a single workshop cannot.', link: 'team-coaching.html' });
             } else if (challenge !== 'decisions' && size !== 'large' && size !== 'xlarge') {
-                recs.push({ name: 'Visual Facilitation', reason: 'Making thinking visible helps any group stay aligned and remember what was discussed.' });
+                recs.push({ name: 'Visual Facilitation', reason: 'Making thinking visible helps any group stay aligned and remember what was discussed.', link: 'visual-facilitation.html' });
             }
 
             return recs;
@@ -193,6 +216,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Sticky Mobile CTA ---
     const stickyCta = document.getElementById('sticky-cta');
     if (stickyCta) {
+        // Dismiss button
+        const stickyClose = stickyCta.querySelector('.sticky-cta-close');
+        if (stickyClose) {
+            stickyClose.addEventListener('click', () => {
+                stickyCta.classList.remove('is-visible');
+                stickyCta.style.display = 'none';
+            });
+        }
+
         const heroCta = document.querySelector('#hero .btn, .hero .btn, #cta-home .btn');
         const stickyLink = stickyCta.querySelector('a');
         const observer = new IntersectionObserver((entries) => {
