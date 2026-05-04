@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Protected Name Rendering (anti-scraping, anti-copy) ---
     document.querySelectorAll('.protected-name').forEach(el => {
         const parts = [el.dataset.f, el.dataset.m, el.dataset.l, el.dataset.s].filter(Boolean);
+        el.innerHTML = '';
         parts.forEach(part => {
             const s = document.createElement('span');
             s.dataset.c = part;
